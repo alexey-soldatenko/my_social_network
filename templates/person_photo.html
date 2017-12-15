@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'person_photo.css' %}">
+{%endblock%}
+
+	
+	{%block person-wall%}
+	<div class="person-wall">
+		<div class="all-photo">
+		<table style="padding: 5px;">
+			<tr>
+				<td colspan="2" style="text-align:center">
+					<span>Фотогаллерея <b>{{person.username}}</b>:</span>
+				</td>
+			</tr>
+		{%for photo1, photo2 in user_photos%}
+
+		<tr>
+			
+			<td style="width: 50px; border: 1px solid black; position: relative">
+				<img style="max-width: 100%;" src="{{photo1.photo.url}}">
+
+				<div style="position: absolute; top: 0; right:0; width: 20px;">
+					<form action="/delete_photo" method="post">
+						{%csrf_token%}
+							<input type="text" name="photo_id" value="{{photo1.id}}" hidden>
+
+							<input style="width: 100%" type="image" class="delete_photo" title="Удалить фото" src="{% static 'img/x_icon.png' %}">
+					</form>
+				</div>
+			</td>
+			{%if photo2%}
+			<td style="width: 50px; border: 1px solid black; position: relative;">
+				<img style="max-width: 100%;" src="{{photo2.photo.url}}">
+
+				<div style="position: absolute; top: 0; right:0; width: 20px;">
+					<form action="/delete_photo" method="post">
+						{%csrf_token%}
+							<input type="text" name="photo_id" value="{{photo2.id}}" hidden>
+
+							<input style="width: 100%" type="image" class="delete_photo" title="Удалить фото" src="{% static 'img/x_icon.png' %}">
+					</form>
+				</div>
+
+			</td>
+			{%endif%}
+					
+		</tr>
+		{%empty%}
+		<tr>
+			<td colspan="2" style="text-align:center">
+			У <b>{{person.username}}</b> нет фотографий, пока;(
+			</td>
+		</tr>
+		{%endfor%}
+		</table>
+		</div>	
+		
+	</div>
+{%endblock%}
+
+
+

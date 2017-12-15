@@ -1,0 +1,55 @@
+{%for msg in message%}
+    {%if msg.user == user%}
+        <div class="my_name" style="padding: 5px;">
+            <img src="{{msg.user.avatar.url}}">
+            {{msg.user.username}}:
+        </div>
+        <div class="my_message_date">
+            <span style="font-size: 0.7em">({{msg.date|date:"d-m-Y H:i"}})</span>
+        </div>
+        <div class="my_message_text">
+            {{msg.text}}
+        </div>                              
+                                
+    {%else%}
+        <div class="companion_name">
+            <img src="{{msg.user.avatar.url}}">
+            {{msg.user.username}}:
+        </div>
+        <div class="companion_message_date">
+            <span style="font-size: 0.7em">({{msg.date|date:"d-m-Y H:i"}})</span>
+        </div>
+        <div class="companion_message_text">
+            {{msg.text}}
+        </div>
+                             
+    {%endif%}
+    
+{%endfor%} 
+{%if msg%}
+{%if msg.user == user%}
+        <div class="my_name" style="padding: 5px;">
+            <img src="{{msg.user.avatar.url}}">
+            {{msg.user.username}}:
+        </div>
+        <div class="my_message_date">
+            <span style="font-size: 0.7em">({{msg.date|date:"d-m-Y H:i"}})</span>
+        </div>
+        <div class="my_message_text">
+            {{msg.text}}
+        </div>                              
+                                
+    {%else%}
+        <div class="companion_name">
+            <img src="{{msg.user.avatar.url}}">
+            {{msg.user.username}}:
+        </div>
+        <div class="companion_message_date">
+            <span style="font-size: 0.7em">({{msg.date|date:"d-m-Y H:i"}})</span>
+        </div>
+        <div class="companion_message_text">
+            {{msg.text}}
+        </div>
+                             
+    {%endif%}
+{%endif%}

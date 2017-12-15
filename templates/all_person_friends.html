@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'all_person_friends.css' %}">
+{%endblock%}
+
+	
+	{%block person-wall%}
+	<div class="person-wall">
+		<div class="all-friends">
+		<table>
+			<tr>
+				<td colspan="4" style="text-align:center">
+					<span>Друзья <b>{{person.username}}</b>:</span>
+				</td>
+			</tr>
+		{%for friend in person_friends%}
+
+		<tr>
+			
+			<td style="width: 51px;">
+				<img class="friend_logo" src="{{friend.avatar.url}}">
+			</td>
+			<td>
+				<b><a class="person_name" href="/person/id_{{friend.person_id}}">{{friend.username}}</a></b>
+			</td>
+			
+		</tr>
+		{%endfor%}
+		</table>
+		</div>
+		
+	</div>
+{%endblock%}
+
+
+{%block other_info%}
+	
+{%endblock%}
+

@@ -1,0 +1,110 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<script type="text/javascript" src="{% static 'js/person_page.js' %}"></script>
+{%endblock%}
+
+{%block person_description%}
+<div class="person-description">
+	<table class="person-description-table-base">
+		<tr>
+			<td colspan="2" style="text-align: center"><b><a href="/person/id_{{person.person_id}}">{{person.username}}</a></b></td>
+		</tr>
+
+		{%if user.is_authenticated and user.person_id != person.person_id%}
+		{%if is_my_friend%}
+			<tr>
+				<td style="text-align: center" colspan="2">
+					<input class="add_freind" type="submit" value="У меня в друзьях">
+				</td>
+			</tr>
+		{%else%}
+			<tr>
+				<td style="text-align: center" colspan="2">
+				<form action="/add_freind" method="post">
+					{%csrf_token%}
+					<input type="text" name="friend" value="{{person}}" hidden>
+					<input class="add_freind" type="submit" value="Добавить в друзья">
+				</form>
+				</td>
+			</tr>
+		{%endif%}
+		{%endif%}
+
+		<tr>
+			<td class="person-description-img-cell"><img src="{% static 'img/location.png' %}"></td>
+			<td>
+			{%if person.country == 'Неопределена' and person.city == 'Неопределен'%}
+				{{person.city}}
+			{%else%}
+			{{person.city}}, {{person.country}}
+			{%endif%}
+			</td>
+		</tr>
+		<tr>
+			<td class="person-description-img-cell"><img src="{% static 'img/calender.png' %}"></td>
+			<td>
+				 Дата регистрации:
+			<span>{{person.create_date|date:"d-m-Y"}}</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="person-description-img-cell"><img src="{% static 'img/foto.png' %}"></td>
+			<td>
+				<a href="/person/id_{{person.person_id}}/photo">Фотоальбом</a>
+			</td>
+		</tr>
+		{%if user.is_authenticated%}
+		<tr>
+			<td colspan="2" style="text-align: center;">
+
+				<button onclick="show_new_message_form()">Написать сообщение</button>
+				
+			</td>
+		</tr>
+		{%endif%}
+	</table>
+		
+	</div>
+		
+
+
+<div id="Wrap2" style="display: none;">
+		<div id="message-form">
+			<table>
+				<form action="/new_message" method="post">
+				{%csrf_token%}
+					<input type="text" name="companion_id" value="{{person.person_id}}" hidden>
+					<input type="text" name="author_id" value="{{user.person_id}}" hidden>
+                    
+					<tr>
+						<td colspan="2" style="text-align: right; padding: 0"><img src="{% static 'img/x_icon.png' %}" onclick="close_new_message_form()"></td>
+					</tr>
+					<tr>
+						<td colspan="2">Ваше сообщение:</td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea id="text_area" maxlength="250" oninput="count_symbol_message()" name="message_text" required></textarea> </td>
+						
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:right; font-size: 10px;">
+						<span id="counter"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right"><input type="submit" name="" value="Отправить"></td>
+					</tr>
+				</form>
+			</table>	
+		</div>
+
+	</div>
+{%endblock%}
+
+	
+
+
+	

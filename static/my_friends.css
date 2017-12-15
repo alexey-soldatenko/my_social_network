@@ -1,0 +1,73 @@
+
+.info-line .my_friends{
+	border-bottom: 2px solid #0082A4;
+}
+
+
+.person-wall{
+	width: 45%;
+	margin-left: 3%;
+	float: left;
+	background: white;
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+	min-height: 40vh;
+
+}
+
+
+.friend_logo{
+	object-fit: cover;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	border: 1px solid gray;
+}
+
+.person-wall table{
+	width: 100%;
+	border-spacing: 5px;
+}
+
+.person-wall table tr td{
+	padding: 0;
+	width: auto;
+}
+
+.person-wall table a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.person-wall .person_name:hover{
+	color: #4682B4;
+
+}
+
+.accept_refuse{
+	display: inline-block;
+	box-sizing: border-box;
+}
+.button {
+	margin-right: 5%;
+	text-align: center;
+	border-radius: 10px;
+	padding: 3px;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: #0082A4;
+	color: white;
+	cursor: pointer;
+
+}
+.button:hover{
+	color: black;
+	background: white;
+}
+
+.all-friends table tr td{
+	padding: 0;
+	width: auto;
+	text-align: center;
+	
+}

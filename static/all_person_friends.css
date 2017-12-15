@@ -1,0 +1,38 @@
+.person-wall{
+	width: 45%;
+	margin-left: 3%;
+	float: left;
+	background: white;
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+	min-height: 40vh;
+
+}
+
+.friend_logo{
+	object-fit: cover;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	border: 1px solid gray;
+}
+
+.person-wall table{
+	width: 80%;
+	margin-left: 10%;
+	border-spacing: 5px;
+}
+
+.person-wall table tr td{
+	padding: 5px;
+	width: auto;
+}
+
+.person-wall table a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.person-wall a:hover{
+	color: #4682B4;;
+}

@@ -1,0 +1,10 @@
+.all-photo table {
+	width: 80%;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+.all-photo table tr td{
+	padding: 5px;
+	text-align: center;	
+}

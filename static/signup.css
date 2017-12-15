@@ -1,0 +1,221 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: "calibri", Garamond, 'Comic Sans MS'; 
+}
+
+.container{
+	min-height: 100vh;
+	background: #DCDCDC;
+	overflow: hidden;
+	
+
+}
+
+
+/* --- Header ---*/
+
+.header{
+	background: white;
+	font-size: 13px;
+	width: 100%;
+	padding: 10px;
+	top: 0;
+	position: fixed;
+	z-index: 1;
+
+}
+
+.header-list {
+	float: left;
+	position: absolute;
+	left: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header-list ul li{
+	list-style-type: none;
+	display: inline;
+	padding: 5px;
+}
+
+.header-list a{
+	color: inherit;
+	text-decoration: none;
+}
+
+.header-list a:hover{
+	color: #0082A4;
+	text-decoration: underline;
+}
+
+.login{
+	padding: 0;
+	float: right;
+	margin-right: 5%;		
+}
+
+
+input[type="search"]{
+	border-radius: 20px;
+	background: #DCDCDC;
+	border: none;
+	padding: 5px;
+	padding-left: 15px;
+	font-family: inherit;
+	border: 2px solid white;
+}
+
+input[type="search"]:focus{
+	border: 2px solid #4682B4;
+	color: #808080;
+	background: white;
+}
+
+#login-link{
+	color: gray;
+}
+
+#login-link:hover{
+	cursor: pointer;
+}
+
+#login-block{
+	display: none;
+	border-radius: 8px;
+	position: fixed;
+	background: white;
+	left: 74%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+#login-block table{
+	border-spacing: 5px;
+	margin: auto;
+	width: 100%;
+	
+}
+
+#login-block table tr td{
+	padding: 5px;
+	
+}
+
+#login-block input{
+	width: 100%;
+	border-radius: 5px;
+	padding: 3px;
+	border: 1px solid #C0C0C0;
+}
+
+#login-block input:focus{
+	border: 2px solid #4682B4;
+	border-radius: 5px;
+}
+
+#login-block .submit-in{
+	border-radius: 10px;
+	padding: 5px;
+	color: black;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: white;
+}
+
+#login-block .submit-reg{
+	border-radius: 10px;
+	padding: 5px;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: #0082A4;
+	color: white;
+	cursor: pointer;
+
+}
+
+
+#login-block .submit-in:hover{
+	background: #0082A4;
+	color: white;
+	cursor: pointer;
+}
+
+
+#login-block .submit-reg:hover{
+	border-radius: 10px;
+	color: black;
+	padding: 5px;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: white;
+}
+
+.general-container{
+	position: relative;
+	width: 40%;
+	background: white;
+	margin-top: 10%;
+	margin-bottom: 5%;
+	left: 30%;
+	border-radius: 10px;
+}
+
+.general-container table{
+	width: 80%;
+	margin: auto;
+	padding: 10px;
+}
+
+.general-container table tr td{
+	width: 100%;
+	padding: 10px;
+	font-size: 1.3em;
+}
+
+.general-container input{
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 0.75em;
+	font-weight: bold;
+	color:  #14171a;
+}
+
+.general-container input[type="submit"]{
+	background: #0082FF;
+	color: white;
+	border: none;
+	padding: 5px; 
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.general-container input[type="submit"]:hover{
+	background: #0050FF;
+}
+
+.condition{
+	width: 100%;
+	background: #F5F5F5;
+	box-sizing: border-box;
+	padding: 10px;
+	overflow: hidden;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.check-box{
+	float: left; 
+	width: 5%;
+
+	
+}
+
+.confirm{
+	font-size: 0.7em;
+	padding: 5px;
+	float: left; width: 95%;
+	box-sizing: border-box;
+	
+}

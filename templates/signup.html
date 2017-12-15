@@ -1,0 +1,108 @@
+<!doctype html>
+{%load staticfiles%}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+<link type="text/css" href="{% static 'signup.css' %}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+</head>
+
+
+<body onclick="click_event()">
+<div class="container">
+<div class="header">
+	<div class="header-list">
+		<ul>
+			<li><a href="/">Главная</a></li><li><a href="">О нас</a></li>
+		</ul>
+	</div>
+	<div class="login">
+
+	<table>
+		<tr>
+			<td><span style="color:black">Уже зарегистрированы?</span> <span onclick="show_login_block(event)" id="login-link">Войти</span><span>&#8595;</span></td>
+		</tr>
+	</table>
+		
+	</div>
+
+	<div id="login-block" onclick="pass_func(event)">
+		
+		<table>
+			<form action="/login" method="post">
+			{%csrf_token%}
+			<tr>
+				<td>Уже зарегистрированы?</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="email" placeholder="Адрес электронной почты"></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="password" placeholder="Пароль"></td>
+			</tr>
+			<tr>
+				<td><input class="submit-in" type="submit" value="Войти"></td>
+			</tr>
+			</form>
+			<tr>
+				<td><hr></td>
+			</tr>
+			<tr>
+				<td>Ещё не зарегистрированы?</td>
+			</tr>
+			<tr>
+				<td class="submit-reg"><a href="/signup">Регистрация</a></td>
+			</tr>
+		</table>
+	</div>
+	
+</div>
+
+<div>
+	<div class="general-container">
+		<table>
+			<form action="/signup_save" method="post">
+			{%csrf_token%}
+			<td>Присоединяйтесь к нам прямо сейчас.</td>
+				</tr>
+				<tr>
+					<td>{{form.user_name}}</td>
+				</tr>
+				<tr>
+					<td>{{form.email}}</td>
+				</tr>
+				<tr>
+					<td>{{form.password1}}</td>
+				</tr>
+				<tr>
+					<td>{{form.password2}}</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Регистрация"></td>
+				</tr>
+				{%if form.errors%}
+					<tr>
+						<td><span style="color:red; font-size: 0.7em">Проверьте правильность заполнения формы</span></td>
+					</tr>
+				{%endif%}
+			</form>
+
+		</table>
+		
+    	
+		<div class="condition">
+			<div style="width:80%; margin:auto;">
+				<div class="check-box"><input type="checkbox" checked disabled></div>
+				<div class="confirm">Регистрируясь, вы соглашаетесь с Условиями предоставления услуг и политикой конфиденциальности.</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+{%load staticfiles%}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="{% static 'main.css' %} " rel="stylesheet">
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</head>
+
+
+
+<body>
+<div class="container" onclick="click_event()">
+<div class="header">
+	<div class="header-list">
+		<ul>
+			<li>
+			<a href="">Главная</a></li><li><a href="">О нас</a></li>
+		</ul>
+	</div>
+	<div class="login">
+
+	<table>
+		<tr>
+			<td>
+			<form action="/search">
+			
+				<div id="search" onclick="search_style(event)">
+					<input id="search-line" type="search" placeholder="Поиск" name="search_name"><input id="search-but" type="submit" value="">
+				</div>
+			
+			</form>
+		</tr>
+	</table>
+		
+	</div>
+	
+</div>
+
+<div class="header-img">
+
+
+<div class="slogan">
+	<span align="center">Добро пожаловать!</span>
+	<p>Будьте на связи с друзьями и другими замечательными людьми. Получайте последние новости о том, что вас интересует. И следите за событиями в реальном времени, с разных сторон.</p>
+</div>
+
+	<div id="login-block">
+		
+		<table>
+			<form action="/login" method="post">
+			{%csrf_token%}
+			<tr>
+				<td>Уже зарегистрированы?</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="email" placeholder="Адрес электронной почты"></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="password" placeholder="Пароль"></td>
+			</tr>
+			<tr>
+				<td><input id="submit-in" type="submit" value="Войти" onmouseover="button_style('log', 'mouseover')" onmouseout="button_style('log', 'mouseout')"></td>
+			</tr>
+			</form>
+			<tr>
+				<td><hr></td>
+			</tr>
+			<tr>
+				<td>Присоединяйтесь к нам прямо сейчас.</td>
+			</tr>
+			
+			<tr>
+				<td> <div id="submit-reg" onmouseover="button_style('reg', 'mouseover')" onmouseout="button_style('reg', 'mouseout')" onclick="window.open('/signup', '_self')">Регистрация</div></td>
+			</tr>
+		</table>
+	</div>
+	
+</div>
+
+
+
+
+
+
+</div>
+</body>
+</html>

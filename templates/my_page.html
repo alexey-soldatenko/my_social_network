@@ -1,0 +1,154 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'my_page.css' %}">
+<script type="text/javascript" src="{% static 'js/my_page.js' %}"></script>
+{%endblock%}
+
+
+	{%block person-wall%}
+	<div class="person-wall">
+
+	<div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
+			{%if person == user%}
+					<span id="add_record" onclick="show_add_record_form()">Добавить запись</span>
+				{%endif%}
+		</div>
+
+		{%if user_records%}
+		{%for record in user_records%}
+		<div class="wall-record">
+			<div class="wall-record-logo">
+					<img src="{{record.0.user.avatar.url}}">
+			</div>
+		<div class="wall-record-info">
+			<table>
+				<tr>
+					<td>
+						<span>{{record.0.user.username}}</span> <span class="date">{{record.0.date|date:"d-m-Y H:i"}}</span>
+					</td>
+					<td style="width: 15px;">
+						<form action="/delete_record" method="post">
+						{%csrf_token%}
+							<input type="text" name="record_id" value="{{record.0.id}}" hidden>
+
+							<input type="image" class="delete_record" title="Удалить запись" src="{% static 'img/x_icon.png' %}">
+						</form>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{%if record.0.author_record.username != record.0.user.username%}
+							<span style="font-size: 1.2em; color: #0082A4">&#9997;</span>
+							<a class="author_link" href="/person/id_{{record.0.author_record.person_id}}">{{record.0.author_record.username}}</a>
+						{%endif%}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="wall-record-self">
+							<p>{{record.0.record_text}}</p>
+							{%if record.0.image%}
+							<img src="{{record.0.image.url}}">
+							{%endif%}
+						</div>
+					</td>
+				</tr>
+			</table>
+				
+			</div>
+
+
+			<div class="wall-record-meta">
+				<div class="wall-record-like">
+					<img class="meta_img" src="{% static 'img/like.png' %}"><span> {{record.1}}</span>
+				</div>
+				<div class="wall-record-repost">
+					<img class="meta_img" src="{% static 'img/repost.png' %}"><span> {{record.2}}</span>
+				</div>
+				<div class="wall-record-comment">
+					<img class="meta_img" src="{% static 'img/comment.png' %}"><span> {{record.3}}</span>
+				</div>
+			</div>
+			
+			{%if record.4%}
+				<div class="comments_box">
+					<span style="text-decoration: underline; color: #0082A4; cursor: pointer;" id="verb_{{record.0.id}}" onclick="show_comments('comments_{{record.0.id}}', 'verb_{{record.0.id}}')">Комментарии:</span>
+					<div class="comments" id="comments_{{record.0.id}}" style="display: none;">
+						{%for comment in record.4%}
+							<table>
+								<tr>
+									<td class="comment_img">
+										<img width="100%" src="{{comment.user.avatar.url}}">
+									</td>
+									<td><a href="/person/id_{{comment.user.person_id}}">{{comment.user.username}}</a>:</td>
+									
+								</tr>
+								<tr>
+								<td></td>
+									<td class="comments_table">
+										{{comment.text}}
+									</td>
+								</tr>
+							</table>
+					{%endfor%}
+				</div>
+				</div>
+			{%endif%}
+
+		</div>
+		{%endfor%}
+		{%else%}
+			<div style="text-align: center">
+				<p>Нет ни одной записи</p>	
+			</div>
+		{%endif%}
+
+		
+
+
+	<div id="Wrap" style="display: none;">
+		<div id="record-form">
+			<table>
+				<form action="/add_record" method="post" enctype="multipart/form-data" name="record_form">
+				{%csrf_token%}
+					<input type="text" name="person_id" value="{{person.person_id}}" hidden>
+					<tr>
+						<td colspan="2" style="text-align: right; padding: 0"><img src="{% static 'img/x_icon.png' %}" onclick="close_add_record_form()"></td>
+					</tr>
+					<tr>
+						<td colspan="2">Моя новая запись</td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea id="text_area" maxlength="250" oninput="count_symbol()" name="record_text" required></textarea> </td>
+						
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:right; font-size: 10px;">
+						<span id="counter"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="icon_col">
+							<label>
+								<img src="{% static 'img/photo_add.png' %}">
+								<input id="my_file" type="file" name="image" style="display:none;" onchange="show_name_file()">
+							</label>
+								<span id="file_name"></span>
+						</td>
+
+						<td colspan="2" style="text-align: right"><input type="submit" name="submit" value="Добавить"></td>
+					</tr>
+				</form>
+			</table>	
+		</div>
+
+	</div>
+		
+		
+	</div>
+{%endblock%}
+

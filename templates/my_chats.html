@@ -1,0 +1,113 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'my_chats.css' %}">
+
+<script type="text/javascript">
+    var username = '{{user.username}}';
+    var date_last_change;
+    
+</script>
+<script type="text/javascript" src="{% static 'js/my_chats.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/my_chats_ajax.js' %}"></script>
+<script type="text/javascript">
+    setInterval(review_new_message, 5000);
+</script>
+{%endblock%}
+
+	
+
+	{%block person-wall%}
+
+<div class="person-wall">
+	<div>
+		{%if not all_chats%}
+		<p style="text-align: center;">У Вас нет бесед</p>
+		{%else%}
+        <table style="width: 100%; padding-left: 5px;">
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <span>Мои беседы:</span>
+                </td>
+            </tr>
+        {%for chat, message in all_chats%}
+
+        <tr>
+            {%if chat.companion.username != user.username%}
+                <td style="width: 51px;">
+                    <img class="friend_logo" src="{{chat.companion.avatar.url}}">
+                </td>
+                <td style="text-align:center">        
+                    <b><a class="person_name" href="/person/id_{{chat.companion.person_id}}">{{chat.companion.username}}</a></b>
+
+                </td>
+            {%else%}
+                <td style="width: 51px;">
+                    <img class="friend_logo" src="{{chat.author.avatar.url}}">
+                </td>
+                <td style="text-align:center">        
+                    <b><a class="person_name" href="/person/id_{{chat.author.person_id}}">{{chat.author.username}}</a></b>
+
+                </td>
+            {%endif%}
+            <td style="text-align: center;">
+                    <button onclick="show_chat('{{chat.id}}', '{{chat.author.person_id}}', '{{chat.companion.person_id}}', '{{chat.last_change}}'); return false">Продолжить беседу</button>
+            </td>
+            <td style="text-align: center;">
+                    <form action="/delete_chat" method="post">
+                    {%csrf_token%}
+                        <input type="text" name="chat_id" value="{{chat.id}}" hidden>
+                        <input type="submit" value="Удалить беседу">
+                    </form>
+                    
+            </td>
+        </tr>
+
+  
+        {%endfor%}
+        </table>
+		{%endif%}
+	</div>
+	
+	
+        <div id="wrap" style="display: none;">
+            <div id="chat-box">
+                <div style="text-align: right;">
+                    <img onclick="close_message_box()" src="{% static 'img/x_icon.png' %}">
+                </div>
+                <div id="overflow-message-block">
+                  
+                                             
+                  
+                </div> 
+
+                <div class="new_message">
+                <form id="message_form" name="message_form">
+                {%csrf_token%}
+                <div>
+                    <input type="text" name="chat_id" hidden>
+                    <input type="text" name="author_id" hidden>
+                    <input type="text" name="companion_id"hidden>
+                    <textarea id="message_textarea" placeholder="Ваше новое сообщение..." oninput="message_count_symbol()" name="message_text" required></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 0.7em;" id="message_counter"></span>
+                </div>
+                <div style="text-align: right; padding-bottom: 5px; box-sizing: border-box;">
+                    <button onclick="create_ajax_request(); return false;">Отправить</button>
+                </div>
+                </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+	</div>
+
+       
+{%endblock%}

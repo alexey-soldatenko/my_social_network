@@ -1,0 +1,235 @@
+body {
+	padding: 0;
+	margin: 0;
+	background: #DCDCDC;
+	font-family: "calibri", Garamond, 'Comic Sans MS'; 
+
+}
+
+
+
+/* --- Header ---*/
+
+.header{
+	background: white;
+	font-size: 13px;
+	width: 100%;
+	padding: 5px;
+	position: relative;
+	display: inline-block;
+	-moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+    box-shadow: 0px 1px 1px #888888;
+}
+
+.header-list {
+	float: left;
+	
+	
+}
+
+.header-list ul li{
+	list-style-type: none;
+	display: inline;
+	padding: 5px;
+}
+
+.header-list a{
+	color: inherit;
+	text-decoration: none;
+}
+
+.header-list a:hover{
+	color: #0082A4;
+	text-decoration: underline;
+}
+
+
+.login{
+	float: right;
+	margin-right: 5%;
+	
+}
+
+
+
+#search{
+	border-radius: 20px;
+	background: #DCDCDC;
+	border: 2px solid white;
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-family: inherit;
+	
+}
+
+
+#search input[type="search"]{
+	background: inherit;
+	border: none;
+
+}
+
+#search input[type="submit"]{
+	background: inherit;
+	background-size: cover;
+	background-image: url(/static/img/search.png);
+	border: none;
+	cursor: pointer;	
+
+}
+
+
+#login-link{
+	color: gray;
+	text-decoration: none;
+}
+
+#login-link:hover{
+	cursor: pointer;
+}
+
+
+
+/*--- General container ---*/
+
+.general-container{
+	margin-top: 50px;
+	overflow: hidden;
+
+}
+
+/*-- Person description ---*/
+
+.setting-list{
+	width: 45%;
+	margin: auto;
+	margin-bottom: 50px;
+	background: white;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20px;
+
+}
+.setting-list span{
+	font-weight: bold;
+	font-size: 1.2em;
+	color: black;
+
+}
+
+.setting-list table{
+	width: 80%;
+	margin: auto;
+	border: 1px solid gray;
+	text-align: left;
+	border-collapse: collapse;
+	box-sizing: border-box;
+
+}
+.setting-list table tr td{
+	border: 1px solid gray;
+	padding: 10px;
+
+}
+
+
+.setting-list img{
+	width: 20%;
+	object-fit: cover;
+	border-radius: 7px;
+}
+
+.setting-list .link{
+	border-radius: 10px;
+	padding: 5px;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: #0082A4;
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+
+}
+
+.setting-list .link:hover{
+	border-radius: 10px;
+	color: black;
+	padding: 5px;
+	border: 2px solid #0082A4;
+	font-weight: bold;
+	background: white;
+}
+
+#load_file{
+	border: 1px solid black;
+	position: absolute;
+	background: white;
+	-moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+	top: 40%;
+	left: 40%;
+	z-index: 2;
+	padding: 0;
+}
+
+#load_file table{
+	padding-left: 5px;
+}
+
+#load_file table tr td{
+	padding-bottom: 10px;
+}
+
+#load_file img{
+	width: 20px;
+	cursor: pointer;
+}
+
+#edit_form{
+	border: 1px solid black;
+	position: absolute;
+	background: white;
+	-moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+	top: 30%;
+	left: 40%;
+	z-index: 2;
+	padding: 0;
+}
+
+#edit_form table{
+	padding-left: 5px;
+}
+
+#edit_form table tr td{
+	padding-bottom: 10px;
+}
+
+#edit_form img{
+	width: 20px;
+	cursor: pointer;
+}
+
+#Wrap1, #Wrap2{
+ z-index: 1000;
+ top:0;
+ left:0;
+ position:fixed;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0.5);
+} 
+
+
+/*--- Footer ---*/
+#footer{
+	clear: both;
+	text-align: center;
+	width: 45%;
+	margin-left: 28%;
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+{%load staticfiles%}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="{% static 'settings.css' %} " rel="stylesheet">
+<script type="text/javascript" src="{% static 'js/settings.js' %}"></script>
+</head>
+
+
+
+<body>
+<div class="container" onclick="click_event()">
+<div class="header">
+	<div class="header-list">
+		<ul>
+			<li>&#8592;<a href="/person/id_{{person.person_id}}">Моя страница</a></li>
+		</ul>
+	</div>
+
+
+	<div class="login">
+	<table>
+		<tr>
+			<td>
+			<form action="/search">
+			
+				<div id="search" onclick="search_style(event)">
+					<input id="search-line" type="search" placeholder="Поиск" name="search_name"><input id="search-but" type="submit" value="">
+				</div>
+			
+			</form>
+			
+
+			</td>
+			<td><span style="color:black">Добрый день!</span> <a href="/logout" id="login-link">Выйти&#8629;</a></td>
+		</tr>
+	</table>	
+	</div>	
+
+</div>
+
+
+
+
+
+<div class="general-container">
+
+	<div class="setting-list">
+	<span>Мой профиль</span>
+	
+	<table>
+		<tr>
+			<td colspan="2" style="text-align: center;">
+				<img src="{{person.avatar.url}}">
+			</td>
+			
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center;" onclick="file_input('Wrap1')">
+			<span class="link">Сменить фото</span>	
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Имя и фамилия
+			</td>
+			<td>
+				{{person.username}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Город
+			</td>
+			<td>
+				{{person.city}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Страна
+			</td>
+			<td>
+				{{person.country}}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Электронная почта
+			</td>
+			<td>
+				{{person.email}}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center;">
+				<span class="link" onclick="file_input('Wrap2')">Редактировать</span>
+			</td>
+		</tr>
+		
+	</table>
+		
+		
+		
+	</div>
+
+<div id="Wrap1" style="display: none;">
+<div id="load_file">
+	<table>
+		<form action="/my_settings" method="post" enctype="multipart/form-data">
+		{%csrf_token%}
+		<input type="text" name="person_id" value="{{person.person_id}}" hidden>
+			<tr>
+				<td style="text-align: right; padding: 0"><img src="{% static 'img/x_icon.png' %}" onclick="close_file_input('Wrap1')"></td>
+			</tr>
+			<tr>
+				<td><span>Выберите фото на ваш аватар.</span></td>
+			</tr>
+			<tr>
+				<td><input type="file" name="avatar" required></td>
+			</tr>
+			<tr>
+				<td style="text-align: right"><input type="submit" value="Закрепить"></td>
+			</tr>
+
+		</form>
+	</table>	
+</div>
+</div>
+
+<div id="Wrap2" style="display: none;">
+<div id="edit_form">
+	<table>
+		<form action="/my_settings" method="post">
+		{%csrf_token%}
+			<input type="text" name="person_id" value="{{person.person_id}}" hidden>
+			<tr>
+				<td colspan="2" style="text-align: right; padding: 0"><img src="{% static 'img/x_icon.png' %}" onclick="close_file_input('Wrap2')"></td>
+			</tr>
+			<tr>
+				<td>Имя и фамилия</td>
+				<td><input type="text" name="username" value="{{person.username}}" required></td>
+			</tr>
+			<tr>
+				<td>Город</td>
+				<td><input type="text" name="city" value="{{person.city}}" required></td>
+			</tr>
+			<tr>
+				<td>Страна</td>
+				<td><input type="text" name="country" value="{{person.country}}" required></td>
+			</tr>
+			<tr>
+				<td>Электронная почта</td>
+				<td><input type="text" name="email" value="{{person.email}}" required></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right"><input type="submit" name="" value="Изменить"></td>
+			</tr>
+		</form>
+	</table>	
+</div>
+</div>
+	
+</div>
+
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+{{block.super}}
+<link rel="stylesheet" type="text/css" href="{% static 'search.css' %}">
+
+{%endblock%}
+
+
+{%block logo_img%}
+{%if user.is_authenticated%}
+{{block.super}}
+{%else%}
+<div class="header-img">
+</div>
+{%endif%}
+{%endblock%}
+
+{%block person_description%}
+{%if user.is_authenticated%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+{%block other_info%}
+{%if user.is_authenticated%}
+{{block.super}}
+{%endif%}
+{%endblock%}
+
+
+
+
+
+	{%block person-wall%}
+
+<div class="person-wall" {%if not user.is_authenticated %} style="margin-left: 28%;" {%endif%}>
+	<div>
+		{%if not all_users%}
+		<p style="text-align: center;">По этому запросу никого не найдено.</p>
+		{%else%}
+        <table style="width: 80%; padding-left: 5px; margin: auto; ">
+            <tr>
+                <td colspan="4" style="text-align:center">
+                    <span>Возможно, Вы искали:</span>
+                </td>
+            </tr>
+        {%for person in all_users%}
+
+        <tr>
+            <td style="width: 51px;">
+                <img class="friend_logo" src="{{person.avatar.url}}">
+            </td>
+
+            <td style="text-align:center">        
+                <b><a class="person_name" href="/person/id_{{person.person_id}}">{{person.username}}</a></b>
+            </td>
+            <td style="text-align:center">        
+                город: <b>{{person.city}}</b>
+            </td>
+
+        </tr>
+
+  
+        {%endfor%}
+        </table>
+		{%endif%}
+	</div>
+
+	
+		
+	</div>
+
+
+    {%endblock%}

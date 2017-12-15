@@ -1,0 +1,30 @@
+.person-wall{
+	width: 45%;
+	margin-left: 3%;
+	float: left;
+	background: white;
+	overflow-wrap: break-word;
+	box-sizing: border-box;
+	min-height: 40vh;
+	display: inline-block;
+
+}
+
+.friend_logo{
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	object-fit: cover;
+	border-radius: 20px;
+	border: 1px solid gray;
+}
+
+.person-wall a{
+	color: inherit;
+	text-decoration: none;
+}
+
+.person-wall a:hover{
+	color: #0082A4;
+	text-decoration: underline;
+}

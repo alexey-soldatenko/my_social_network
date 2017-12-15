@@ -1,0 +1,142 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+
+{%block head%}
+<link rel="stylesheet" type="text/css" href="{% static 'my_friends.css' %}">
+{{block.super}}
+
+<script type="text/javascript" src="{% static 'js/my_friends.js' %}"></script>
+{%endblock%}
+
+	
+	{%block person-wall%}
+	<div class="person-wall">
+	<table>
+		{%for new_friend in new_friends%}
+		<tr>
+			<td style="width: 51px;">
+				<img class="friend_logo" src="{{new_friend.man.avatar.url}}">
+			</td>
+			<td>
+				<b><a class="person_name" href="/person/id_{{new_friend.man.person_id}}">{{new_friend.man.username}}</a></b> <span> предложил вам дружбу</span>	
+			</td>
+		</tr>
+		<tr>
+			
+			<td colspan="2" style="text-align: center; ">
+			<div class="accept_refuse">
+				<form action="/accept_refuse_friend" method="post">
+				{%csrf_token%}
+					<input type="text" name="person" value="{{new_friend.man}}" hidden>
+					<input type="text" name="status" value="accept" hidden>
+					<input class="button" type="submit" value="Принять">
+					
+				</form>
+			</div>
+			<div class="accept_refuse">
+				<form action="/accept_refuse_friend" method="post">
+				{%csrf_token%}
+					<input type="text" name="person" value="{{new_friend.man}}" hidden>
+					<input type="text" name="status" value="refuse" hidden>
+					<input class="button" type="submit" value="Отклонить">
+					
+				</form>
+			</div>
+			</td>
+			
+		</tr>
+
+		{%endfor%}
+		</table>
+		
+		<div class="all-friends">
+		{%if my_friends%}
+		<table>
+			<tr>
+				<td colspan="4" style="text-align:center">
+					<span>Мои друзья:</span>
+				</td>
+			</tr>
+		{%for friend in my_friends%}
+
+		<tr>
+			
+			<td style="width: 51px;">
+				<img class="friend_logo" src="{{friend.avatar.url}}">
+			</td>
+			<td>
+				<b><a class="person_name" href="/person/id_{{friend.person_id}}">{{friend.username}}</a></b>
+			</td>
+			<td style="text-align: center; width: 35%;">
+				
+			<button class="button" onclick="show_new_message_form('{{friend.person_id}}', '{{user.person_id}}')">Написать сообщение</button>
+					
+			</td>
+			<td style="text-align: center; width: 35%;">
+			<div class="accept_refuse">
+				<form action="/delete_friend" method="post">
+					{%csrf_token%}
+					<input type="text" name="friend" value="{{friend.person_id}}" hidden>
+					<input class="button" type="submit" value="Удалить из друзей">
+					
+				</form>
+			</div>
+			</td>
+		</tr>
+		{%endfor%}
+		</table>
+		{%else%}
+		<p style="text-align: center;">У вас нет друзей, пока;(</p>
+		{%endif%}
+		</div>
+
+		
+	<div id="Wrap2" style="display: none;">
+		<div id="message-form">
+			<table>
+				<form action="/new_message" name="new_message_form" method="post">
+				{%csrf_token%}
+					<input type="text" name="companion_id" hidden>
+					<input type="text" name="author_id" hidden>
+                    
+					<tr>
+						<td colspan="2" style="text-align: right; padding: 0"><img src="{% static 'img/x_icon.png' %}" onclick="close_new_message_form()"></td>
+					</tr>
+					<tr>
+						<td colspan="2">Ваше сообщение:</td>
+					</tr>
+					<tr>
+						<td colspan="2"><textarea id="text_area" maxlength="250" oninput="count_symbol_message()" name="message_text" required></textarea> </td>
+						
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:right; font-size: 10px;">
+						<span id="counter"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right"><input type="submit" name="" value="Отправить"></td>
+					</tr>
+				</form>
+			</table>	
+		</div>
+
+	</div>
+
+
+		
+
+	</div>
+{%endblock%}
+
+
+
+{%block other_info%}
+	
+{%endblock%}
+
+{%block footer%}
+{{block.super}}
+
+{%endblock%}
+
